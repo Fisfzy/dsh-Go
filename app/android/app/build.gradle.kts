@@ -49,7 +49,10 @@ android {
     }
 
     defaultConfig {
-        applicationId = "io.github.ccch1mneyyy.dsh_app"
+        // 手环互联开发版：与正式版共存，便于在同一台手机上对比/联调，
+        // 无需卸载正在使用的官方 dsh-Go（签名不同也无法覆盖安装）。
+        // Manifest 里的 provider authority 全部用 ${applicationId} 占位符，会自动跟随。
+        applicationId = "io.github.ccch1mneyyy.dsh_app.ows"
         // java.nio.file (symlinks while unpacking the rootfs) needs API 26.
         minSdk = 26
         // Target 28 like Termux, so the API 29+ exec restriction on app-private
