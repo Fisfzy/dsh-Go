@@ -25,7 +25,11 @@ class OwsResult {
 
   Map<String, Object?> toJson() => ok
       ? <String, Object?>{'ok': true, ...data}
-      : <String, Object?>{'ok': false, 'error': error};
+      : <String, Object?>{
+          'ok': false,
+          'error': error,
+          if (data.isNotEmpty) ...data,
+        };
 
   static const noHost = OwsResult(false, <String, Object?>{}, 'no-host');
   static const notPaired = OwsResult(false, <String, Object?>{}, 'not-paired');
@@ -124,7 +128,7 @@ class OwsBridge {
     final list = _ref.read(sessionsProvider).value;
     if (list != null) {
       for (final s in list) {
-        if (s.blank || s.isSubagent) continue;
+        if (s.isSubagent) continue;
         sessions.add(_sessionJson(s));
       }
     }
@@ -133,6 +137,7 @@ class OwsBridge {
       'online': client != null,
       'host': host,
       'linkPhase': phase,
+      'canTranscribe': client?.canTranscribe ?? false,
       'busy': false,
       'currentSessionId': sessionId,
       'currentSessionTitle': _titleOf(sessionId, list),
@@ -164,7 +169,7 @@ class OwsBridge {
     final list = await _ref.read(sessionsProvider.future);
     final items = <Map<String, Object?>>[];
     for (final s in list) {
-      if (s.blank || s.isSubagent) continue;
+      if (s.isSubagent) continue;
       items.add(_sessionJson(s));
     }
     return OwsResult(true, <String, Object?>{
@@ -221,7 +226,11 @@ class OwsBridge {
       if (!sent.ok) return sent;
       return OwsResult(true, <String, Object?>{'text': transcript.text});
     } catch (e) {
-      return OwsResult(false, {}, 'asr-failed');
+      // 本机引擎通常没有 speech/* 能力（要单独准备 ASR 模型），
+      // 区分这两种失败，手环才能给出可操作的提示。
+      final unavailable = !client.canTranscribe;
+      return OwsResult(false, <String, Object?>{'detail': e.toString()},
+          unavailable ? 'asr-unavailable' : 'asr-failed');
     }
   }
 

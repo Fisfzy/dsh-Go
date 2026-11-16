@@ -57,6 +57,7 @@ final owsStateProvider =
 class OwsController extends AsyncNotifier<OwsState> {
   static const _kEnabled = 'ows.link.enabled';
   static const _kDevices = 'ows.link.devices';
+  static const _kTokens = 'ows.link.tokens';
 
   @override
   Future<OwsState> build() async {
@@ -64,6 +65,7 @@ class OwsController extends AsyncNotifier<OwsState> {
     final enabled = prefs.getBool(_kEnabled) ?? false;
     final devices = prefs.getStringList(_kDevices) ?? <String>[];
     final pairing = ref.read(owsPairingProvider);
+    pairing.restore(prefs.getStringList(_kTokens) ?? <String>[]);
     final session = pairing.renew();
     return OwsState(
       enabled: enabled,
@@ -81,6 +83,7 @@ class OwsController extends AsyncNotifier<OwsState> {
     final prefs = await SharedPreferences.getInstance();
     await prefs.setBool(_kEnabled, _s.enabled);
     await prefs.setStringList(_kDevices, _s.devices);
+    await prefs.setStringList(_kTokens, ref.read(owsPairingProvider).tokens);
   }
 
   /// 刷新配对码：旧码立即作废，已配对令牌保留。
@@ -123,8 +126,11 @@ class OwsController extends AsyncNotifier<OwsState> {
   }
 
   void rememberDevice(String label) {
-    if (label.isEmpty || _s.devices.contains(label)) return;
-    _update(_s.copyWith(devices: <String>[..._s.devices, label]));
+    if (label.isNotEmpty && !_s.devices.contains(label)) {
+      _update(_s.copyWith(devices: <String>[..._s.devices, label]));
+    }
+    // 即使设备已存在也要落盘：_persist() 同时保存最新已授权 token，
+    // 否则第二次用同一 IP 配对后 token 不会持久化，App 一重启就失效。
     unawaited(_persist());
   }
 

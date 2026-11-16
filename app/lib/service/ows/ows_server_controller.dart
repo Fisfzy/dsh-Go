@@ -13,7 +13,16 @@ final owsServerProvider =
 
 class OwsServerController extends Notifier<OwsServer?> {
   @override
-  OwsServer? build() => null;
+  OwsServer? build() {
+    // App 冷启动后，若用户上次开着开关，自动恢复 8766 服务。
+    // owsStateProvider 是异步的（要读 SharedPreferences），加载完成后
+    // listen 会再回调一次；start() 内部有 state != null 的防重入。
+    ref.listen(owsStateProvider, (prev, next) {
+      final enabled = next.value?.enabled ?? false;
+      if (enabled) Future.microtask(start);
+    }, fireImmediately: true);
+    return null;
+  }
 
   Future<void> start() async {
     if (state != null) return;

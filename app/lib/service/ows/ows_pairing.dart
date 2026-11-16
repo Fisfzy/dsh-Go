@@ -73,6 +73,13 @@ class OwsPairing {
 
   void forget(String token) => _pairedTokens.remove(token);
 
+  /// App 冷启动后从 SharedPreferences 恢复已授权令牌，
+  /// 否则手环每次都要重新输 6 位码配对。
+  void restore(Iterable<String> tokens) => _pairedTokens.addAll(tokens);
+
+  /// 供 OwsController 持久化。
+  List<String> get tokens => List<String>.unmodifiable(_pairedTokens);
+
   bool _rateLimited() {
     final now = DateTime.now();
     if (now.difference(_windowStart).inMinutes >= 1) {

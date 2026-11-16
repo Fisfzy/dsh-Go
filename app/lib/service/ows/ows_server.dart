@@ -7,6 +7,7 @@
 //   • 语音 body 上限 8 MiB；JSON body 上限 64 KiB
 import 'dart:async';
 import 'dart:convert';
+import 'dart:developer' as developer;
 import 'dart:io';
 import 'dart:typed_data';
 
@@ -78,6 +79,12 @@ class OwsServer {
       final token = request.uri.queryParameters['token'] ??
           request.headers.value('x-dshgo-token') ??
           '';
+      developer.log(
+        '[OWS] --> ${request.method} $path tokenLen=${token.length} '
+        'ct=${request.headers.contentType?.mimeType ?? '-'} '
+        'len=${request.headers.contentLength}',
+        name: 'ows',
+      );
 
       Object? body;
       if (path == '/api/ows/voice') {
@@ -128,6 +135,11 @@ class OwsServer {
           result = const OwsResult(false, {}, 'not-found');
       }
 
+      developer.log(
+        '[OWS] <-- $path ${result.ok ? 'OK' : 'ERR:${result.error}'} '
+        '${jsonEncode(result.toJson())}',
+        name: 'ows',
+      );
       response.statusCode = HttpStatus.ok;
       response.headers.contentType = ContentType.json;
       response.write(jsonEncode(result.toJson()));
@@ -135,6 +147,7 @@ class OwsServer {
       response.statusCode = HttpStatus.requestEntityTooLarge;
       response.write(jsonEncode(<String, Object?>{'ok': false, 'error': 'too-large'}));
     } catch (e) {
+      developer.log('[OWS] !! exception ${request.uri.path} $e', name: 'ows', error: e);
       response.statusCode = HttpStatus.internalServerError;
       response.write(jsonEncode(<String, Object?>{'ok': false, 'error': 'internal'}));
     } finally {
