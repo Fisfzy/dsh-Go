@@ -12,8 +12,12 @@ import 'dart:typed_data';
 import 'package:dsh_client/dsh_client.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
+import '../../speech/deepseek_speech.dart';
+import '../../speech/speech_settings.dart';
+import '../../speech/voice_cloud.dart';
 import '../../state/connection_state.dart';
 import '../../state/sessions_state.dart';
+import '../../state/voice_settings.dart';
 import 'ows_pairing.dart';
 
 class OwsResult {
@@ -138,6 +142,7 @@ class OwsBridge {
       'host': host,
       'linkPhase': phase,
       'canTranscribe': client?.canTranscribe ?? false,
+      'asrCloudConfigured': (await _ref.read(cloudAsrProvider.notifier).ready()).configured,
       'busy': false,
       'currentSessionId': sessionId,
       'currentSessionTitle': _titleOf(sessionId, list),
@@ -205,8 +210,41 @@ class OwsBridge {
     }
   }
 
-  /// 语音：body 是 16kHz / mono / 16-bit 裸 PCM，封成 WAV 后喂给
-  /// dsh-Go 的 transcribe。识别出的文本走与文本指令相同的路径。
+  /// 语音识别：云端优先，不在手表/手机本地放 ASR 模型。
+  /// 1) 用户配置的 OpenAI 兼容 /audio/transcriptions（设置 → 语音 → 其他云端服务）
+  /// 2) DeepSeek 官方语音（已登录账号或 API key）
+  /// 3) 主机自带 speech/transcribe（本机引擎通常没有，只是兜底）
+  /// 三条都不成，才把具体异常返回给手环。
+  Future<String> _recognize(Uint8List wav, DshClient client) async {
+    // 1) 用户自己的云端服务：这条最轻，不占本地存储、不要求主机能力。
+    try {
+      final settings = await _ref.read(cloudAsrProvider.notifier).ready();
+      if (settings.configured) {
+        final cloud = OpenAiVoiceCloud(
+          settings,
+          _ref.read(deepSeekSpeechHttpProvider),
+        );
+        return await cloud.transcribe(wav);
+      }
+    } catch (_) {
+      // 配置有误或网络失败，继续尝试下一条，最后统一报 detail。
+    }
+
+    // 2) DeepSeek 语音（复用 App 已有的账号/密钥解析）。
+    try {
+      final deepseek = await _ref.read(voiceCloudProvider)(VoiceMode.deepseek);
+      if (deepseek != null) return await deepseek.transcribe(wav);
+    } catch (_) {
+      // 没有可用的 DeepSeek 凭据，继续回退。
+    }
+
+    // 3) 主机引擎：本机引擎会返回 404 endpoint speech/transcribe
+    //    is not served by this Host，这个异常交给上层带 detail 返回。
+    return (await client.transcribe(wav)).text;
+  }
+
+  /// 语音：body 是 16kHz / mono / 16-bit 裸 PCM，封成 WAV 后走云端 ASR。
+  /// 识别出的文本再走与文本指令相同的 prompt 路径。
   Future<OwsResult> voice(String token, Uint8List pcm) async {
     if (!_authorized(token)) return OwsResult.notPaired;
     final client = _client;
@@ -215,23 +253,18 @@ class OwsBridge {
     const maxBytes = 8 * 1024 * 1024;
     if (pcm.length > maxBytes) return const OwsResult(false, {}, 'audio-too-large');
 
+    final wav = _pcmToWav(pcm);
+    String text;
     try {
-      // 不指定 providerId/language：让当前引擎用服务端默认值，
-      // 避免在桥接层复制语音设置的复杂度。
-      final transcript = await client.transcribe(_pcmToWav(pcm));
-      if (transcript.text.isEmpty) {
-        return const OwsResult(false, {}, 'not-heard');
-      }
-      final sent = await prompt(token, transcript.text);
-      if (!sent.ok) return sent;
-      return OwsResult(true, <String, Object?>{'text': transcript.text});
+      text = (await _recognize(wav, client)).trim();
     } catch (e) {
-      // 本机引擎通常没有 speech/* 能力（要单独准备 ASR 模型），
-      // 区分这两种失败，手环才能给出可操作的提示。
-      final unavailable = !client.canTranscribe;
-      return OwsResult(false, <String, Object?>{'detail': e.toString()},
-          unavailable ? 'asr-unavailable' : 'asr-failed');
+      return OwsResult(false, <String, Object?>{'detail': e.toString()}, 'asr-failed');
     }
+    if (text.isEmpty) return const OwsResult(false, {}, 'not-heard');
+
+    final sent = await prompt(token, text);
+    if (!sent.ok) return sent;
+    return OwsResult(true, <String, Object?>{'text': text});
   }
 
   Future<OwsResult> newSession(String token) async {
