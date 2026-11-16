@@ -9712,13 +9712,13 @@ class L10nEn extends L10n {
   String get hubGroupConnectivity => 'Connectivity';
 
   @override
+  String get hubGroupHelp => 'Help and about';
+
+  @override
   String get hubWearableLink => 'Watch and band link';
 
   @override
   String get hubWearableLinkHint => 'Control DSH from a smart watch';
-
-  @override
-  String get hubGroupHelp => 'Help and about';
 
   @override
   String get hubPersonalization => 'Personalization';
@@ -11514,6 +11514,67 @@ class L10nEn extends L10n {
 
   @override
   String get nearbyChange => 'Change';
+
+  @override
+  String get owsLinkTitle => 'Watch and band link';
+
+  @override
+  String get owsLinkSubtitle => 'Let a smart watch use all of DSH through this phone';
+
+  @override
+  String get owsLinkEnable => 'Enable link service';
+
+  @override
+  String get owsLinkEnableHint => 'Listens on LAN port 8766 for paired watches only';
+
+  @override
+  String get owsLinkDisable => 'Disable link service';
+
+  @override
+  String get owsLinkStatusOff => 'Off';
+
+  @override
+  String get owsLinkStatusOn => 'Listening';
+
+  @override
+  String get owsLinkStatusError => 'Failed to start';
+
+  @override
+  String get owsLinkPairCode => 'Pairing code';
+
+  @override
+  String get owsLinkPairCodeHint => 'Enter these 6 digits in the watch settings, valid for 10 minutes';
+
+  @override
+  String get owsLinkRefreshCode => 'Refresh code';
+
+  @override
+  String get owsLinkAddress => 'Watch connection address';
+
+  @override
+  String get owsLinkAddressHint => 'Keep the watch on the same WiFi, or have it join this phone\'s hotspot';
+
+  @override
+  String get owsLinkNoAddress => 'No LAN address found';
+
+  @override
+  String get owsLinkPairedDevices => 'Paired devices';
+
+  @override
+  String get owsLinkNoDevices => 'None yet — pair from the watch to see it here';
+
+  @override
+  String get owsLinkForget => 'Forget device';
+
+  @override
+  String get owsLinkPortBusy => 'Port 8766 is in use. Close the app using it and try again';
+
+  @override
+  String get owsLinkSecurity =>
+      'Codes are single-use. The service listens only while enabled and releases the port immediately when disabled';
+
+  @override
+  String get owsLinkHowTo => 'On the watch: open DSH Go → Settings → enter the address and code above → connect';
 
   @override
   String get performanceTitle => 'Performance';
@@ -28783,63 +28844,4 @@ class L10nEn extends L10n {
   @override
   String get workspaceRecoveryFailed =>
       'The operation did not finish. Check the local engine status and logs. This page shows whether the index mode changed.';
-  @override
-  String get owsLinkTitle => 'Watch and band link';
-
-  @override
-  String get owsLinkSubtitle => 'Let a smart watch use all of DSH through this phone';
-
-  @override
-  String get owsLinkEnable => 'Enable link service';
-
-  @override
-  String get owsLinkEnableHint => 'Listens on LAN port 8766 for paired watches only';
-
-  @override
-  String get owsLinkDisable => 'Disable link service';
-
-  @override
-  String get owsLinkStatusOff => 'Off';
-
-  @override
-  String get owsLinkStatusOn => 'Listening';
-
-  @override
-  String get owsLinkStatusError => 'Failed to start';
-
-  @override
-  String get owsLinkPairCode => 'Pairing code';
-
-  @override
-  String get owsLinkPairCodeHint => 'Enter these 6 digits in the watch settings, valid for 10 minutes';
-
-  @override
-  String get owsLinkRefreshCode => 'Refresh code';
-
-  @override
-  String get owsLinkAddress => 'Watch connection address';
-
-  @override
-  String get owsLinkAddressHint => 'Keep the watch on the same WiFi, or have it join this phone's hotspot';
-
-  @override
-  String get owsLinkNoAddress => 'No LAN address found';
-
-  @override
-  String get owsLinkPairedDevices => 'Paired devices';
-
-  @override
-  String get owsLinkNoDevices => 'None yet — pair from the watch to see it here';
-
-  @override
-  String get owsLinkForget => 'Forget device';
-
-  @override
-  String get owsLinkPortBusy => 'Port 8766 is in use. Close the app using it and try again';
-
-  @override
-  String get owsLinkSecurity => 'Codes are single-use. The service listens only while enabled and releases the port immediately when disabled';
-
-  @override
-  String get owsLinkHowTo => 'On the watch: open DSH Go → Settings → enter the address and code above → connect';
 }

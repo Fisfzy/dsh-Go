@@ -9194,13 +9194,13 @@ class L10nZh extends L10n {
   String get hubGroupConnectivity => '互联';
 
   @override
+  String get hubGroupHelp => '帮助与关于';
+
+  @override
   String get hubWearableLink => '手环/手表互联';
 
   @override
   String get hubWearableLinkHint => '用智能手环遥控 DSH';
-
-  @override
-  String get hubGroupHelp => '帮助与关于';
 
   @override
   String get hubPersonalization => '个性化';
@@ -10932,6 +10932,66 @@ class L10nZh extends L10n {
 
   @override
   String get nearbyChange => '更换';
+
+  @override
+  String get owsLinkTitle => '手环/手表互联';
+
+  @override
+  String get owsLinkSubtitle => '让智能手环通过手机使用 DSH 的全部能力';
+
+  @override
+  String get owsLinkEnable => '开启互联服务';
+
+  @override
+  String get owsLinkEnableHint => '开启后手机会在局域网监听 8766 端口，仅供已配对手环连接';
+
+  @override
+  String get owsLinkDisable => '关闭互联服务';
+
+  @override
+  String get owsLinkStatusOff => '已关闭';
+
+  @override
+  String get owsLinkStatusOn => '监听中';
+
+  @override
+  String get owsLinkStatusError => '启动失败';
+
+  @override
+  String get owsLinkPairCode => '配对码';
+
+  @override
+  String get owsLinkPairCodeHint => '在手环设置页输入这 6 位数字，10 分钟内有效';
+
+  @override
+  String get owsLinkRefreshCode => '刷新配对码';
+
+  @override
+  String get owsLinkAddress => '手环连接地址';
+
+  @override
+  String get owsLinkAddressHint => '确保手环与手机在同一 WiFi，或让手环连接手机热点';
+
+  @override
+  String get owsLinkNoAddress => '未获取到局域网地址';
+
+  @override
+  String get owsLinkPairedDevices => '已配对设备';
+
+  @override
+  String get owsLinkNoDevices => '暂无设备，在手环上发起配对后会出现在这里';
+
+  @override
+  String get owsLinkForget => '解除配对';
+
+  @override
+  String get owsLinkPortBusy => '8766 端口被占用，请关闭占用该端口的应用后重试';
+
+  @override
+  String get owsLinkSecurity => '配对码一次性使用；服务仅在开关打开时监听，关闭后立即释放端口';
+
+  @override
+  String get owsLinkHowTo => '在手环上打开 DSH Go → 设置 → 填入上面的地址与配对码 → 连接';
 
   @override
   String get performanceTitle => '性能';
@@ -27319,63 +27379,4 @@ class L10nZh extends L10n {
 
   @override
   String get workspaceRecoveryFailed => '操作未完成，请查看本机引擎状态和日志。已切换的模式可在本页确认。';
-  @override
-  String get owsLinkTitle => '手环/手表互联';
-
-  @override
-  String get owsLinkSubtitle => '让智能手环通过手机使用 DSH 的全部能力';
-
-  @override
-  String get owsLinkEnable => '开启互联服务';
-
-  @override
-  String get owsLinkEnableHint => '开启后手机会在局域网监听 8766 端口，仅供已配对手环连接';
-
-  @override
-  String get owsLinkDisable => '关闭互联服务';
-
-  @override
-  String get owsLinkStatusOff => '已关闭';
-
-  @override
-  String get owsLinkStatusOn => '监听中';
-
-  @override
-  String get owsLinkStatusError => '启动失败';
-
-  @override
-  String get owsLinkPairCode => '配对码';
-
-  @override
-  String get owsLinkPairCodeHint => '在手环设置页输入这 6 位数字，10 分钟内有效';
-
-  @override
-  String get owsLinkRefreshCode => '刷新配对码';
-
-  @override
-  String get owsLinkAddress => '手环连接地址';
-
-  @override
-  String get owsLinkAddressHint => '确保手环与手机在同一 WiFi，或让手环连接手机热点';
-
-  @override
-  String get owsLinkNoAddress => '未获取到局域网地址';
-
-  @override
-  String get owsLinkPairedDevices => '已配对设备';
-
-  @override
-  String get owsLinkNoDevices => '暂无设备，在手环上发起配对后会出现在这里';
-
-  @override
-  String get owsLinkForget => '解除配对';
-
-  @override
-  String get owsLinkPortBusy => '8766 端口被占用，请关闭占用该端口的应用后重试';
-
-  @override
-  String get owsLinkSecurity => '配对码一次性使用；服务仅在开关打开时监听，关闭后立即释放端口';
-
-  @override
-  String get owsLinkHowTo => '在手环上打开 DSH Go → 设置 → 填入上面的地址与配对码 → 连接';
 }

@@ -16996,24 +16996,27 @@ abstract class L10n {
 
   /// No description provided for @hubGroupConnectivity.
   ///
-  /// In zh, this message translates to:/n  /// **'互联'**
+  /// In zh, this message translates to:
+  /// **'互联'**
   String get hubGroupConnectivity;
-
-  /// No description provided for @hubWearableLink.
-  ///
-  /// In zh, this message translates to:/n  /// **'手环/手表互联'**
-  String get hubWearableLink;
-
-  /// No description provided for @hubWearableLinkHint.
-  ///
-  /// In zh, this message translates to:/n  /// **'用智能手环遥控 DSH'**
-  String get hubWearableLinkHint;
 
   /// No description provided for @hubGroupHelp.
   ///
   /// In zh, this message translates to:
   /// **'帮助与关于'**
   String get hubGroupHelp;
+
+  /// No description provided for @hubWearableLink.
+  ///
+  /// In zh, this message translates to:
+  /// **'手环/手表互联'**
+  String get hubWearableLink;
+
+  /// No description provided for @hubWearableLinkHint.
+  ///
+  /// In zh, this message translates to:
+  /// **'用智能手环遥控 DSH'**
+  String get hubWearableLinkHint;
 
   /// No description provided for @hubPersonalization.
   ///
@@ -20290,6 +20293,126 @@ abstract class L10n {
   /// In zh, this message translates to:
   /// **'更换'**
   String get nearbyChange;
+
+  /// No description provided for @owsLinkTitle.
+  ///
+  /// In zh, this message translates to:
+  /// **'手环/手表互联'**
+  String get owsLinkTitle;
+
+  /// No description provided for @owsLinkSubtitle.
+  ///
+  /// In zh, this message translates to:
+  /// **'让智能手环通过手机使用 DSH 的全部能力'**
+  String get owsLinkSubtitle;
+
+  /// No description provided for @owsLinkEnable.
+  ///
+  /// In zh, this message translates to:
+  /// **'开启互联服务'**
+  String get owsLinkEnable;
+
+  /// No description provided for @owsLinkEnableHint.
+  ///
+  /// In zh, this message translates to:
+  /// **'开启后手机会在局域网监听 8766 端口，仅供已配对手环连接'**
+  String get owsLinkEnableHint;
+
+  /// No description provided for @owsLinkDisable.
+  ///
+  /// In zh, this message translates to:
+  /// **'关闭互联服务'**
+  String get owsLinkDisable;
+
+  /// No description provided for @owsLinkStatusOff.
+  ///
+  /// In zh, this message translates to:
+  /// **'已关闭'**
+  String get owsLinkStatusOff;
+
+  /// No description provided for @owsLinkStatusOn.
+  ///
+  /// In zh, this message translates to:
+  /// **'监听中'**
+  String get owsLinkStatusOn;
+
+  /// No description provided for @owsLinkStatusError.
+  ///
+  /// In zh, this message translates to:
+  /// **'启动失败'**
+  String get owsLinkStatusError;
+
+  /// No description provided for @owsLinkPairCode.
+  ///
+  /// In zh, this message translates to:
+  /// **'配对码'**
+  String get owsLinkPairCode;
+
+  /// No description provided for @owsLinkPairCodeHint.
+  ///
+  /// In zh, this message translates to:
+  /// **'在手环设置页输入这 6 位数字，10 分钟内有效'**
+  String get owsLinkPairCodeHint;
+
+  /// No description provided for @owsLinkRefreshCode.
+  ///
+  /// In zh, this message translates to:
+  /// **'刷新配对码'**
+  String get owsLinkRefreshCode;
+
+  /// No description provided for @owsLinkAddress.
+  ///
+  /// In zh, this message translates to:
+  /// **'手环连接地址'**
+  String get owsLinkAddress;
+
+  /// No description provided for @owsLinkAddressHint.
+  ///
+  /// In zh, this message translates to:
+  /// **'确保手环与手机在同一 WiFi，或让手环连接手机热点'**
+  String get owsLinkAddressHint;
+
+  /// No description provided for @owsLinkNoAddress.
+  ///
+  /// In zh, this message translates to:
+  /// **'未获取到局域网地址'**
+  String get owsLinkNoAddress;
+
+  /// No description provided for @owsLinkPairedDevices.
+  ///
+  /// In zh, this message translates to:
+  /// **'已配对设备'**
+  String get owsLinkPairedDevices;
+
+  /// No description provided for @owsLinkNoDevices.
+  ///
+  /// In zh, this message translates to:
+  /// **'暂无设备，在手环上发起配对后会出现在这里'**
+  String get owsLinkNoDevices;
+
+  /// No description provided for @owsLinkForget.
+  ///
+  /// In zh, this message translates to:
+  /// **'解除配对'**
+  String get owsLinkForget;
+
+  /// No description provided for @owsLinkPortBusy.
+  ///
+  /// In zh, this message translates to:
+  /// **'8766 端口被占用，请关闭占用该端口的应用后重试'**
+  String get owsLinkPortBusy;
+
+  /// No description provided for @owsLinkSecurity.
+  ///
+  /// In zh, this message translates to:
+  /// **'配对码一次性使用；服务仅在开关打开时监听，关闭后立即释放端口'**
+  String get owsLinkSecurity;
+
+  /// No description provided for @owsLinkHowTo.
+  ///
+  /// In zh, this message translates to:
+  /// **'在手环上打开 DSH Go → 设置 → 填入上面的地址与配对码 → 连接'**
+  String get owsLinkHowTo;
 
   /// No description provided for @performanceTitle.
   ///
@@ -49992,103 +50115,4 @@ L10n lookupL10n(Locale locale) {
     'on GitHub with a reproducible sample app and the gen-l10n configuration '
     'that was used.',
   );
-  /// No description provided for @owsLinkTitle.
-  ///
-  /// In zh, this message translates to:/n  /// **'手环/手表互联'**
-  String get owsLinkTitle;
-
-  /// No description provided for @owsLinkSubtitle.
-  ///
-  /// In zh, this message translates to:/n  /// **'让智能手环通过手机使用 DSH 的全部能力'**
-  String get owsLinkSubtitle;
-
-  /// No description provided for @owsLinkEnable.
-  ///
-  /// In zh, this message translates to:/n  /// **'开启互联服务'**
-  String get owsLinkEnable;
-
-  /// No description provided for @owsLinkEnableHint.
-  ///
-  /// In zh, this message translates to:/n  /// **'开启后手机会在局域网监听 8766 端口，仅供已配对手环连接'**
-  String get owsLinkEnableHint;
-
-  /// No description provided for @owsLinkDisable.
-  ///
-  /// In zh, this message translates to:/n  /// **'关闭互联服务'**
-  String get owsLinkDisable;
-
-  /// No description provided for @owsLinkStatusOff.
-  ///
-  /// In zh, this message translates to:/n  /// **'已关闭'**
-  String get owsLinkStatusOff;
-
-  /// No description provided for @owsLinkStatusOn.
-  ///
-  /// In zh, this message translates to:/n  /// **'监听中'**
-  String get owsLinkStatusOn;
-
-  /// No description provided for @owsLinkStatusError.
-  ///
-  /// In zh, this message translates to:/n  /// **'启动失败'**
-  String get owsLinkStatusError;
-
-  /// No description provided for @owsLinkPairCode.
-  ///
-  /// In zh, this message translates to:/n  /// **'配对码'**
-  String get owsLinkPairCode;
-
-  /// No description provided for @owsLinkPairCodeHint.
-  ///
-  /// In zh, this message translates to:/n  /// **'在手环设置页输入这 6 位数字，10 分钟内有效'**
-  String get owsLinkPairCodeHint;
-
-  /// No description provided for @owsLinkRefreshCode.
-  ///
-  /// In zh, this message translates to:/n  /// **'刷新配对码'**
-  String get owsLinkRefreshCode;
-
-  /// No description provided for @owsLinkAddress.
-  ///
-  /// In zh, this message translates to:/n  /// **'手环连接地址'**
-  String get owsLinkAddress;
-
-  /// No description provided for @owsLinkAddressHint.
-  ///
-  /// In zh, this message translates to:/n  /// **'确保手环与手机在同一 WiFi，或让手环连接手机热点'**
-  String get owsLinkAddressHint;
-
-  /// No description provided for @owsLinkNoAddress.
-  ///
-  /// In zh, this message translates to:/n  /// **'未获取到局域网地址'**
-  String get owsLinkNoAddress;
-
-  /// No description provided for @owsLinkPairedDevices.
-  ///
-  /// In zh, this message translates to:/n  /// **'已配对设备'**
-  String get owsLinkPairedDevices;
-
-  /// No description provided for @owsLinkNoDevices.
-  ///
-  /// In zh, this message translates to:/n  /// **'暂无设备，在手环上发起配对后会出现在这里'**
-  String get owsLinkNoDevices;
-
-  /// No description provided for @owsLinkForget.
-  ///
-  /// In zh, this message translates to:/n  /// **'解除配对'**
-  String get owsLinkForget;
-
-  /// No description provided for @owsLinkPortBusy.
-  ///
-  /// In zh, this message translates to:/n  /// **'8766 端口被占用，请关闭占用该端口的应用后重试'**
-  String get owsLinkPortBusy;
-
-  /// No description provided for @owsLinkSecurity.
-  ///
-  /// In zh, this message translates to:/n  /// **'配对码一次性使用；服务仅在开关打开时监听，关闭后立即释放端口'**
-  String get owsLinkSecurity;
-
-  /// No description provided for @owsLinkHowTo.
-  ///
-  /// In zh, this message translates to:/n  /// **'在手环上打开 DSH Go → 设置 → 填入上面的地址与配对码 → 连接'**
-  String get owsLinkHowTo;
 }
