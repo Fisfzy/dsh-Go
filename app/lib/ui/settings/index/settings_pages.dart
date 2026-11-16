@@ -20,6 +20,7 @@ import '../../phone/app_rules_page.dart';
 import '../../phone/dnd_mode_page.dart';
 import '../../phone/phone_control_screen.dart';
 import '../../phone/phone_unlock_page.dart';
+import '../../phone/ows_link_page.dart';
 import '../../phone/system_actions_page.dart';
 import '../../plugins/plugin_inventory_page.dart';
 import '../../plugins/plugins_screen.dart';
@@ -83,6 +84,7 @@ Widget settingsPage(SettingsPageId id, {String? sessionId}) => switch (id) {
   SettingsPageId.allFeatures => const AllFeaturesPage(),
   SettingsPageId.account => const AccountPage(),
   SettingsPageId.remote => const RemoteScreen(),
+  SettingsPageId.wearableLink => const OwsLinkPage(),
   SettingsPageId.permission => PermissionPage(sessionId: sessionId),
   SettingsPageId.agentPresets => const AgentPresetsPage(),
   SettingsPageId.personalization => const PersonalizationPage(),
