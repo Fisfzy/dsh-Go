@@ -92,6 +92,7 @@ enum SettingsPageId {
   engine,
   remote,
   engineParams,
+  wearableLink,
   subagent,
   agentLoop,
   shell,
@@ -375,6 +376,7 @@ String _abilities(L10n l) => l.hubGroupCapabilities;
 String _look(L10n l) => l.hubSettingsAppearance;
 String _general(L10n l) => l.hubGroupGeneral;
 String _hosts(L10n l) => l.hubGroupHosts;
+String _connectivity(L10n l) => l.hubGroupConnectivity;
 String _help(L10n l) => l.hubGroupHelp;
 
 final _pages = <SettingsPageMeta>[
@@ -614,6 +616,14 @@ final _pages = <SettingsPageMeta>[
     group: _hosts,
     keywords: (l) => l.searchKwEngineParams,
     links: const ['engine-settings'],
+  ),
+  SettingsPageMeta(
+    SettingsPageId.wearableLink,
+    title: (l) => l.hubWearableLink,
+    group: _connectivity,
+    keywords: (l) => '${l.hubWearableLink} ${l.hubWearableLinkHint}',
+    freq: Freq.low,
+    links: const ['wearable-link', 'watch-link'],
   ),
   SettingsPageMeta(
     SettingsPageId.subagent,

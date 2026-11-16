@@ -1,0 +1,22 @@
+{
+  "owsLinkTitle": "Watch and band link",
+  "owsLinkSubtitle": "Let a smart watch use all of DSH through this phone",
+  "owsLinkEnable": "Enable link service",
+  "owsLinkEnableHint": "Listens on LAN port 8766 for paired watches only",
+  "owsLinkDisable": "Disable link service",
+  "owsLinkStatusOff": "Off",
+  "owsLinkStatusOn": "Listening",
+  "owsLinkStatusError": "Failed to start",
+  "owsLinkPairCode": "Pairing code",
+  "owsLinkPairCodeHint": "Enter these 6 digits in the watch settings, valid for 10 minutes",
+  "owsLinkRefreshCode": "Refresh code",
+  "owsLinkAddress": "Watch connection address",
+  "owsLinkAddressHint": "Keep the watch on the same WiFi, or have it join this phone's hotspot",
+  "owsLinkNoAddress": "No LAN address found",
+  "owsLinkPairedDevices": "Paired devices",
+  "owsLinkNoDevices": "None yet — pair from the watch to see it here",
+  "owsLinkForget": "Forget device",
+  "owsLinkPortBusy": "Port 8766 is in use. Close the app using it and try again",
+  "owsLinkSecurity": "Codes are single-use. The service listens only while enabled and releases the port immediately when disabled",
+  "owsLinkHowTo": "On the watch: open DSH Go → Settings → enter the address and code above → connect"
+}

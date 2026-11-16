@@ -245,6 +245,10 @@ abstract final class AppIcons {
   static const sshHost = DshGlyphs.terminalWindow;
   static const remoteHost = DshGlyphs.devices;
   static const remoteHosts = DshGlyphs.devices;
+
+  /// 手环 / 手表互联（设置「互联」分组）。复用同一组设备字形，
+  /// 按角色命名，便于以后换成专用手表图标时只改这里一行。
+  static const wearableLink = DshGlyphs.devices;
   static const webConsole = DshGlyphs.globe;
   static const checkUpdate = DshGlyphs.arrowCircleUp;
   static const autoUpdate = DshGlyphs.clockClockwise;

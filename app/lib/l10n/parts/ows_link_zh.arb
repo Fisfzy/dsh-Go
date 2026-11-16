@@ -1,0 +1,22 @@
+{
+  "owsLinkTitle": "手环/手表互联",
+  "owsLinkSubtitle": "让智能手环通过手机使用 DSH 的全部能力",
+  "owsLinkEnable": "开启互联服务",
+  "owsLinkEnableHint": "开启后手机会在局域网监听 8766 端口，仅供已配对手环连接",
+  "owsLinkDisable": "关闭互联服务",
+  "owsLinkStatusOff": "已关闭",
+  "owsLinkStatusOn": "监听中",
+  "owsLinkStatusError": "启动失败",
+  "owsLinkPairCode": "配对码",
+  "owsLinkPairCodeHint": "在手环设置页输入这 6 位数字，10 分钟内有效",
+  "owsLinkRefreshCode": "刷新配对码",
+  "owsLinkAddress": "手环连接地址",
+  "owsLinkAddressHint": "确保手环与手机在同一 WiFi，或让手环连接手机热点",
+  "owsLinkNoAddress": "未获取到局域网地址",
+  "owsLinkPairedDevices": "已配对设备",
+  "owsLinkNoDevices": "暂无设备，在手环上发起配对后会出现在这里",
+  "owsLinkForget": "解除配对",
+  "owsLinkPortBusy": "8766 端口被占用，请关闭占用该端口的应用后重试",
+  "owsLinkSecurity": "配对码一次性使用；服务仅在开关打开时监听，关闭后立即释放端口",
+  "owsLinkHowTo": "在手环上打开 DSH Go → 设置 → 填入上面的地址与配对码 → 连接"
+}

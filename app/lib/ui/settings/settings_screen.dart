@@ -39,6 +39,7 @@ import '../features/permission_page.dart';
 import '../onboarding/api_key_page.dart' show maskApiKey;
 import '../pets/pet_settings_page.dart';
 import '../phone/phone_control_screen.dart';
+import '../phone/ows_link_page.dart';
 import '../phone/system_actions_page.dart';
 import '../plugins/plugins_screen.dart';
 import '../plugins/seats/plugin_settings_tiles.dart';
@@ -74,6 +75,7 @@ abstract final class SettingsHues {
   static const appearance = 1;
   static const general = 5;
   static const hosts = 6;
+  static const connectivity = 3;
   static const help = 7;
 }
 
@@ -303,6 +305,19 @@ class SettingsScreen extends ConsumerWidget {
               spot: SettingsIndex.entry(SettingsPageId.engineParams),
               value: Text(hostName),
               onTap: () => _push(context, const EngineSettingsHubPage()),
+            ),
+          ],
+        ),
+        SettingsSection(
+          title: l10n.hubGroupConnectivity,
+          children: [
+            SettingsTile(
+              key: const ValueKey('settings-wearable-link'),
+              icon: AppIcons.wearableLink,
+              tint: SettingsHues.connectivity,
+              spot: SettingsIndex.entry(SettingsPageId.wearableLink),
+              subtitle: l10n.hubWearableLinkHint,
+              onTap: () => _push(context, const OwsLinkPage()),
             ),
           ],
         ),
