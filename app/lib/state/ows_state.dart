@@ -141,6 +141,6 @@ final owsHostLabelProvider = Provider<String>((ref) {
   return conn.when(
     data: (c) => c?.label ?? '',
     loading: () => '',
-    error: (_, __) => '',
+    error: (_, _) => '',
   );
 });

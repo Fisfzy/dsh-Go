@@ -8,6 +8,7 @@
 import 'dart:async';
 import 'dart:convert';
 import 'dart:io';
+import 'dart:typed_data';
 
 import '../../state/ows_state.dart';
 import 'ows_bridge.dart';
@@ -36,13 +37,19 @@ class OwsServer {
   int get port => _server.port;
 
   /// 供 UI 展示：第一个非回环 IPv4 地址。
-  String get lanAddress {
-    for (final nic in NetworkInterface.listSync()) {
-      for (final addr in nic.addresses) {
-        if (addr.type == InternetAddressType.IPv4 && !addr.isLoopback) {
-          return '${addr.address}:$port';
+  /// `NetworkInterface.list()` 是异步 API，Dart 没有同步版本。
+  Future<String> lanAddress() async {
+    try {
+      final interfaces = await NetworkInterface.list();
+      for (final nic in interfaces) {
+        for (final addr in nic.addresses) {
+          if (addr.type == InternetAddressType.IPv4 && !addr.isLoopback) {
+            return '${addr.address}:$port';
+          }
         }
       }
+    } catch (_) {
+      // 某些 ROM 上枚举网卡会抛 SocketException，回落到回环地址。
     }
     return '127.0.0.1:$port';
   }

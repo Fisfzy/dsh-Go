@@ -6,7 +6,6 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../../l10n/l10n.dart';
 import '../../state/ows_state.dart';
 import 'ows_bridge.dart';
-import 'ows_pairing.dart';
 import 'ows_server.dart';
 
 final owsServerProvider =
@@ -23,7 +22,7 @@ class OwsServerController extends Notifier<OwsServer?> {
       final bridge = OwsBridge(ref, ref.read(owsPairingProvider));
       final server = await OwsServer.start(bridge, notifier);
       state = server;
-      notifier.setListening(server.lanAddress);
+      notifier.setListening(await server.lanAddress());
     } on SocketException catch (_) {
       notifier.setError(appL10n.owsLinkPortBusy);
     } catch (_) {

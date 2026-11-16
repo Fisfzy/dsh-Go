@@ -13,7 +13,6 @@ import 'package:dsh_client/dsh_client.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../state/connection_state.dart';
-import '../../state/ows_state.dart';
 import '../../state/sessions_state.dart';
 import 'ows_pairing.dart';
 
@@ -97,12 +96,6 @@ class OwsBridge {
   }
 
   String? get _sessionId => _ref.read(currentSessionProvider);
-
-  OwsResult _requireHost() {
-    final client = _client;
-    if (client == null) return OwsResult.noHost;
-    return OwsResult(true, <String, Object?>{'client': client});
-  }
 
   /// 配对：6 位码换 token，成功后 token 进入已授权集合。
   OwsResult pair(String code) {
@@ -198,7 +191,7 @@ class OwsBridge {
     }
 
     try {
-      await client.prompt(sessionId!, text.trim());
+      await client.prompt(sessionId, text.trim());
       _lastText = text.trim();
       _lastReply = null;
       return OwsResult(true, <String, Object?>{'text': _lastText});

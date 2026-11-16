@@ -15,9 +15,8 @@ class PairSession {
 }
 
 class OwsPairing {
-  OwsPairing({Random? random, Duration ttl = const Duration(minutes: 10)})
-      : _random = random ?? Random.secure(),
-        _ttl = ttl;
+  OwsPairing({Random? random, this._ttl = const Duration(minutes: 10)})
+      : _random = random ?? Random.secure();
 
   final Random _random;
   final Duration _ttl;
